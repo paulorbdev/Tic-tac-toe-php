@@ -16,17 +16,4 @@ abstract class Crud extends Connection{
 
    }
 
-   public static function nowMysql(){
-     try{
-
-       $query = Connection::getCon()->prepare("SELECT NOW() as now");
-       $query->execute();
-      return $query->fetch(PDO::FETCH_OBJ)->now;
-
-     } catch(PDOException $e){
-        echo Connection::handlePDO($e);
-     }
-   }
-
-
 }//End of the class.
