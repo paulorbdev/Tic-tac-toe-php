@@ -40,8 +40,10 @@ if($fetch = $room->selectRoom($_SESSION['id'])){
   $div2 = $_GET['div2'];
   $div3 = $_GET['div3'];
  
- if( check($div1,$div2,$div3) && $fetch->$div1 == 'p1' && $fetch->$div2 == 'p1' && $fetch->$div3 == 'p1' || $fetch->$div1 == 'p2' && $fetch->$div2 == 'p2' && $fetch->$div3 == 'p2'){
- 	$room->updatePlaying(0,$fetch->id);
+ if( check($div1,$div2,$div3) && $fetch->$div1 == 'p1' && $fetch->$div2 == 'p1' && $fetch->$div3 == 'p1' || 
+  $fetch->$div1 == 'p2' && $fetch->$div2 == 'p2' && $fetch->$div3 == 'p2'){
+
+ 	 $room->updatePlaying(0,$fetch->id);
      $room->cleanRoom($fetch->id);
 
      $ar['player'] = $fetch->$div1;
@@ -60,7 +62,7 @@ if($fetch = $room->selectRoom($_SESSION['id'])){
  		$fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != ''){
     $room->updatePlaying(0,$fetch->id);
     $room->cleanRoom($fetch->id);
- 		echo 'tie';
+ 		echo json_encode(array('tie'));
  	}
  }
 
