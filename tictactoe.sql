@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 18, 2015 at 08:25 PM
+-- Generation Time: Jun 19, 2015 at 04:28 AM
 -- Server version: 5.5.43-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.9
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`), ADD UNIQUE KEY `playig` (`playing`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `user`
