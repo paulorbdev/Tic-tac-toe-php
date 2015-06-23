@@ -59,10 +59,10 @@ if($fetch = $room->selectRoom($_SESSION['id'])){
    echo json_encode($ar);
  } else if($div1 == 'all'){
  	if($fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && 
- 		 $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != ''){
-    $room->updatePlaying(0,$fetch->id);
-    $room->cleanRoom($fetch->id);
- 		echo json_encode(array('tie'));
+ 	   $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != ''){
+         $room->updatePlaying(0,$fetch->id);
+         $room->cleanRoom($fetch->id);		
+         echo json_encode(array('tie'));
  	}
  }
 
