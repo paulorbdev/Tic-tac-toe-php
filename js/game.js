@@ -23,21 +23,21 @@ if(ver == true){
 }
 
     boxs.click(function(){
-    	if($(this).html() == ''){
-    		var di = $(this).attr('id');
-    		var divt = $(this);
-    	   	$.post('php/insert.php',{div: di},function(x){
-    			if(x == 'p1'){
+      if($(this).html() == ''){
+        var di = $(this).attr('id');
+        var divt = $(this);
+          $.post('php/insert.php',{div: di},function(x){
+          if(x == 'p1'){
                    $(divt).html('<b class="b1">O<b/>')
                    $(divt).css("background","#CCCCCC");
-    			} else if(x == 'p2'){
+          } else if(x == 'p2'){
                   $(divt).html('X');
                   $(divt).css("background","#CCCCCC");
-    			} else {
-    				console.log('espere sua vez');
-    			}
-    		});
-    	}
+          } else {
+            console.log('espere sua vez');
+          }
+        });
+      }
     });
  
 
@@ -85,28 +85,17 @@ if(win == false){
 }
 
 function checkWin(one,two,three){
-  ver = false;
+    ver = false;
   $.get('php/checkwin.php',{div1:one, div2:two, div3:three}, function(x){
-      if(x.player == 'p1'){
-        win = false;
-       mes.html('Congratulations to player: <b class="b1">'+x.na+'.</b> Game restart.');
-      }else if(x.player == 'p2'){
-        win = false;
-        mes.html('Congratulations to player: <b class="b2">'+x.na+'.</b> Game restart.');
-      } else {
-        win = false;
-        mes.html('It was a tie: <b class="b2">game restart.</b>');
-      }
       ver = true;
       cleanAllDivs(); 
-      mes.fadeIn('fast');
-  },'jSON');
+  });
 }
 
 function Loop(){
   $.get('php/game.php', {}, function(r){
     if(r.cod == 4){
-	cleanAllDivs();
+  cleanAllDivs();
              $('#hdp2').html('');
              $('#your').html('');
              $('#score').html('');
@@ -117,7 +106,7 @@ function Loop(){
                mes.fadeIn('fast');
 
     }else if(r.cod == 3){
-	       cleanAllDivs();
+         cleanAllDivs();
              $('#hdp2').html('');
              $('#your').html('');
              $('#score').html('');
@@ -125,7 +114,7 @@ function Loop(){
              $('#player2').html('');
               $('#hdp1').html('Hello,<b class="b2">'+r.online+'</b> waiting other player.');
               mes.html('Waiting for: <b class="b1">player 1</b>');
-			  mes.fadeIn('fast');
+        mes.fadeIn('fast');
 
     }else {
 
@@ -178,7 +167,11 @@ function Loop(){
          
        }
     }
+
+    setTimeout(function(){
       Loop();
+    },130);
+
     }, 'jSON');
 }
 
