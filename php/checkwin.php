@@ -40,30 +40,25 @@ if($fetch = $room->selectRoom($_SESSION['id'])){
   $div2 = $_GET['div2'];
   $div3 = $_GET['div3'];
  
- if(check($div1,$div2,$div3) && $fetch->$div1 == 'p1' && $fetch->$div2 == 'p1' && $fetch->$div3 == 'p1' || 
-    $fetch->$div1 == 'p2' && $fetch->$div2 == 'p2' && $fetch->$div3 == 'p2'){
-
- 	 $room->updatePlaying(0,$fetch->id);
+ if( check($div1,$div2,$div3) && $fetch->$div1 == 'p1' && $fetch->$div2 == 'p1' && $fetch->$div3 == 'p1' || $fetch->$div1 == 'p2' && $fetch->$div2 == 'p2' && $fetch->$div3 == 'p2'){
+     $room->updatePlaying(0,$fetch->id);
      $room->cleanRoom($fetch->id);
-
-     $ar['player'] = $fetch->$div1;
-     if($fetch->div1 == 'p1'){
-     	$users->updateWinsDefeats('wins',$fetch->idp1);
-     	$users->updateWinsDefeats('defeats',$fetch->idp2);
-        $ar['na'] = $users->selectUser($fetch->idp1)->nick;
+     if($fetch->$div1 == 'p1'){
+      $users->updateWinsDefeats('wins',$fetch->idp1);
+      $users->updateWinsDefeats('defeats',$fetch->idp2);
+        echo '<b class="b1">'.$users->selectUser($fetch->idp1)->nick.'</b>';
      }else {
-     	$users->updateWinsDefeats('wins',$fetch->idp2);
-     	$users->updateWinsDefeats('defeats',$fetch->idp1);
-       $ar['na'] = $users->selectUser($fetch->idp2)->nick;
+      $users->updateWinsDefeats('wins',$fetch->idp2);
+      $users->updateWinsDefeats('defeats',$fetch->idp1);
+       echo '<b class="b2">'.$users->selectUser($fetch->idp2)->nick.'</b>';
      }
-   echo json_encode($ar);
  } else if($div1 == 'all'){
- 	if($fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && 
- 	   $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != ''){
-         $room->updatePlaying(0,$fetch->id);
-         $room->cleanRoom($fetch->id);		
-         echo json_encode(array('tie'));
- 	}
+  if($fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && 
+    $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != ''){
+    $room->updatePlaying(0,$fetch->id);
+    $room->cleanRoom($fetch->id);
+    echo 'tie';
+  }
  }
 
 }
