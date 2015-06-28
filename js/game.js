@@ -8,11 +8,12 @@ $(document).ready(function(){
     var ver = true;
     mes.hide();
     all.hide();
-
-    setTimeout(function(){
+  
+      setTimeout(function(){
       load.fadeOut('fast');
       all.fadeIn('slow');
     },6000);
+
     
     mes.click(function(){
       $(this).fadeOut('fast');
@@ -33,8 +34,6 @@ if(ver == true){
           } else if(x == 'p2'){
                   $(divt).html('X');
                   $(divt).css("background","#CCCCCC");
-          } else {
-            console.log('espere sua vez');
           }
         });
       }
