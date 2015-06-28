@@ -30,9 +30,8 @@ $(document).ready(function(){
     			} else if(x == 'p2'){
                   $(divt).html('X');
                   $(divt).css("background","#CCCCCC");
-    			} else {
-    				console.log('espere sua vez');
-    			}
+    	         }
+    	   	}
     		});
     	}
     });
