@@ -5,6 +5,7 @@ $(document).ready(function(){
     var load = $('#loading');
     var mes = $('.mes');
     var win = false;
+    var ver = true;
     mes.hide();
     all.hide();
 
@@ -17,7 +18,9 @@ $(document).ready(function(){
       $(this).fadeOut('fast');
     });
 
+if(ver == true){
      Loop();  
+}
 
     boxs.click(function(){
     	if($(this).html() == ''){
@@ -30,8 +33,9 @@ $(document).ready(function(){
     			} else if(x == 'p2'){
                   $(divt).html('X');
                   $(divt).css("background","#CCCCCC");
-    	         }
-    	   	}
+    			} else {
+    				console.log('espere sua vez');
+    			}
     		});
     	}
     });
@@ -81,6 +85,7 @@ if(win == false){
 }
 
 function checkWin(one,two,three){
+  ver = false;
   $.get('php/checkwin.php',{div1:one, div2:two, div3:three}, function(x){
       if(x.player == 'p1'){
         win = false;
@@ -92,6 +97,7 @@ function checkWin(one,two,three){
         win = false;
         mes.html('It was a tie: <b class="b2">game restart.</b>');
       }
+      ver = true;
       cleanAllDivs(); 
       mes.fadeIn('fast');
   },'jSON');
