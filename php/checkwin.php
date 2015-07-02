@@ -13,7 +13,7 @@ $users = new Users;
 //Check possibilities.
 function check($div1,$div2,$div3){
 if($div1 == 'div0' && $div2 == 'div1'&& $div3 == 'div2'){
-    return TRUE;
+    return true;
 
 }else if($div1 == 'div3' && $div2 == 'div4' && $div3 == 'div5'){
     return true;
@@ -40,27 +40,23 @@ if($fetch = $room->selectRoom($_SESSION['id'])){
   $div2 = $_GET['div2'];
   $div3 = $_GET['div3'];
  
- if( check($div1,$div2,$div3) && $fetch->$div1 == 'p1' && $fetch->$div2 == 'p1' && $fetch->$div3 == 'p1' || $fetch->$div1 == 'p2' && $fetch->$div2 == 'p2' && $fetch->$div3 == 'p2'){
-     $room->updatePlaying(0,$fetch->id);
+ if(check($div1,$div2,$div3) && $fetch->$div1 == 'p1' && $fetch->$div2 == 'p1' && $fetch->$div3 == 'p1' || $fetch->$div1 == 'p2' && $fetch->$div2 == 'p2' && $fetch->$div3 == 'p2'){
      $room->cleanRoom($fetch->id);
      if($fetch->$div1 == 'p1'){
       $users->updateWinsDefeats('wins',$fetch->idp1);
       $users->updateWinsDefeats('defeats',$fetch->idp2);
-        echo '<b class="b1">'.$users->selectUser($fetch->idp1)->nick.'</b>';
+      $room->updatePlaying('p2',$fetch->id);
      }else {
       $users->updateWinsDefeats('wins',$fetch->idp2);
       $users->updateWinsDefeats('defeats',$fetch->idp1);
-       echo '<b class="b2">'.$users->selectUser($fetch->idp2)->nick.'</b>';
+      $room->updatePlaying('p1',$fetch->id);
      }
- } else if($div1 == 'all'){
-  if($fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && 
-    $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != '' && $fetch->div1 != ''){
+ } else if($div1 == 'all' && $fetch->div0 != '' && $fetch->div1 != '' && $fetch->div2 != '' && $fetch->div3 != '' && $fetch->div4 != '' && 
+    $fetch->div5 != '' && $fetch->div6 != '' && $fetch->div7 != '' && $fetch->div8 != ''){
     $room->updatePlaying(0,$fetch->id);
     $room->cleanRoom($fetch->id);
     echo 'tie';
   }
- }
-
 }
 
 
