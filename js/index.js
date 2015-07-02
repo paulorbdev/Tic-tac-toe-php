@@ -72,15 +72,15 @@ $(document).ready(function(){
               statusButton(bt2,'enabled');
               if(r == 'true'){
                 fMessage('Successfully registered.','sucess');
+                setTimeout(function(){
+                 window.location = "index.php";
+                   },2500);
               } else {
                 fMessage('User already exists.');
               }
             }
           });
         }
-        setTimeout(function(){
-          window.location = "index.php";
-        },2500);
         return false;
       });
       function fMessage(message,type){
