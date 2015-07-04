@@ -80,7 +80,7 @@ if(win == false){
      win = true;
      checkWin('all');
    }   
- },1000);
+ },500);
 }
 
 function checkWin(one,two,three){
